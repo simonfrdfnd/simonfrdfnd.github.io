@@ -1,28 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your GitHub Page</title>
+    <title>Le voyage de Celia</title>
     <style>
-        body {
-            background-image: url('images/background.webp'); /* Replace with the path to your image file */
-            background-size: contain;
-            background-position: center;
-            height: 100vh; /* Adjust as needed */
-            margin: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #ffffff; /* Set text color for better visibility */
+        @font-face {
+            font-family: 'ROMANUS';
+            src: url('ROMANUS.otf') format('opentype');
+            /* Ajoutez d'autres formats si nécessaire */
         }
 
-        /* Additional styles for your content can be added here */
+        body {
+            background-image: url('images/background.webp');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-family: 'ROMANUS', sans-serif;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #7b685e; /* Couleur de fond du bouton, ton de la pierre */
+            color: #ffffff; /* Couleur du texte du bouton */
+            padding: 15px 30px; /* Espacement interne du bouton */
+            font-size: 1.2em;
+            border: 2px solid #ffffff; /* Bordure du bouton */
+            border-radius: 8px; /* Coins arrondis */
+            cursor: pointer;
+            margin: 10px; /* Marge autour du bouton */
+            transition: background-color 0.3s ease-in-out; /* Transition en douceur lors du survol */
+        }
+
+        button:hover {
+            background-color: #a88f7d; /* Couleur de fond du bouton lors du survol */
+        }
+
+        /* Styles supplémentaires pour votre contenu peuvent être ajoutés ici */
     </style>
 </head>
 <body>
-    
-    <!-- Your content goes here -->
 
+    <h1>Le voyage de Celia</h1>
+
+    <button id="btnIntroduction" onclick="showIntroduction()">Introduction</button>
+    <button id="btnCommencer" onclick="startJourney()">Commencer</button>
+
+    <!-- Votre contenu va ici -->
+
+    <script>
+        function showIntroduction() {
+            // Rediriger vers la page d'introduction
+            window.location.href = 'intro1.html';
+        }
+
+        function startJourney() {
+            alert("Que votre voyage commence !");
+            // Ajoutez ici le code que vous souhaitez exécuter pour le commencement du voyage
+        }
+    </script>
 </body>
 </html>
