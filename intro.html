@@ -70,20 +70,17 @@
             témoignant de sa puissance passée. Voyant sa vulnérabilité, Héra pressentit une menace grandissante. Car
             s'il venait à décliner, aucun ne saurait empêcher la chute du royaume des dieux.
         </p>
-        <!-- Ajoutez ici d'autres éléments de texte ou de contenu -->
+        <button class="previous-page-button" onclick="goToPreviousPage()">←</button>
+        <button class="next-page-button" onclick="goToNextPage()">→</button>
+
+        <audio id="myaudio" src="music/avengers.mp3" autoplay controls>
+            Votre navigateur ne supporte pas l'élément <code>audio</code>.
+        </audio>
     </div>
-    <!-- Bouton pour la page suivante -->
-    <button class="previous-page-button" onclick="goToPreviousPage()">←</button>
-    <button class="next-page-button" onclick="goToNextPage()">→</button>
-
-    <audio id="myaudio" src="music/avengers.mp3" autoplay controls>
-        Votre navigateur ne supporte pas l'élément <code>audio</code>.
-    </audio>
-
     <script>
         var audio = document.getElementById("myaudio");
         audio.volume = 0.1;
-        
+
         const text_array = [
             "Dans l'ombre des cieux olympiens, les assauts répétés des Titans laissèrent Zeus affaibli, ses cicatrices témoignant de sa puissance passée. Voyant sa vulnérabilité, Héra pressentit une menace grandissante. Car s'il venait à décliner, aucun ne saurait empêcher la chute du royaume des dieux.",
 
@@ -108,7 +105,7 @@
             "Conscient de leur défaite imminente, les dieux comprirent que les Titans s'empareraient des gemmes et que tout espoir serait perdu. Dans un geste de désespoir, ils les dissimulèrent en plusieurs endroits sur terre, confiant leur destinée en la force des hommes.",
 
             "Pendant plus de mille ans, aucune pierre ni anneau ne furent retrouvés, si bien que l'existence même des dieux grecs, emprisonnés par les titans, fût oubliée de presque tous. Seule une certaine guilde de fées n'oublia pas cette quête, destinée à ses plus valeureux membres...",
-        
+
             "blabla"];
 
         var page_number = 0;
