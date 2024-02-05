@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +14,7 @@
         }
 
         body {
-            background-image: url('images/background.webp');
+            background-image: url('images/alice.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -30,34 +31,62 @@
         h1 {
             font-size: 2.5em;
             margin-bottom: 20px;
+            position: absolute;
+            top: 0;
+        }
+
+        h2 {
+            font-size: 2.5em;
+            position: absolute;
+            top: 5%;
+        }
+
+        div {
+            position: absolute;
+            top: 90%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         button {
-            background-color: #7b685e; /* Couleur de fond du bouton, ton de la pierre */
-            color: #ffffff; /* Couleur du texte du bouton */
-            padding: 15px 30px; /* Espacement interne du bouton */
+            background-color: #7b685e;
+            /* Couleur de fond du bouton, ton de la pierre */
+            color: #ffffff;
+            /* Couleur du texte du bouton */
+            padding: 15px 30px;
+            /* Espacement interne du bouton */
             font-size: 1.2em;
-            border: 2px solid #ffffff; /* Bordure du bouton */
-            border-radius: 8px; /* Coins arrondis */
+            border: 2px solid #ffffff;
+            /* Bordure du bouton */
+            border-radius: 8px;
+            /* Coins arrondis */
             cursor: pointer;
-            margin: 10px; /* Marge autour du bouton */
-            transition: background-color 0.3s ease-in-out; /* Transition en douceur lors du survol */
+            margin: 5px;
+            /* Marge autour du bouton */
+            transition: background-color 0.3s ease-in-out;
+            /* Transition en douceur lors du survol */
         }
 
         button:hover {
-            background-color: #a88f7d; /* Couleur de fond du bouton lors du survol */
+            background-color: #a88f7d;
+            /* Couleur de fond du bouton lors du survol */
         }
 
         /* Styles supplémentaires pour votre contenu peuvent être ajoutés ici */
     </style>
 </head>
+
 <body>
 
     <h1>Le voyage de Celia</h1>
-
-    <button id="btnIntroduction" onclick="showIntroduction()">Introduction</button>
-    <button id="btnCommencer" onclick="startJourney()">Commencer</button>
-
+    <h2>La quête de mille ans</h2>
+    <div>
+        <button id="btnIntroduction" onclick="showIntroduction()">Introduction</button>
+        <button id="btnCommencer" onclick="startJourney()">Commencer</button>
+    </div>
     <!-- Votre contenu va ici -->
 
     <script>
@@ -72,4 +101,5 @@
         }
     </script>
 </body>
+
 </html>
