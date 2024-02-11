@@ -6,7 +6,7 @@
     <title>Le voyage de Celia</title>
     <style>
         body {
-            background-image: url('images/intro1.jpg');
+            background-image: url('images/q1-1.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -60,53 +60,105 @@
             font-size: 1.2em;
             font-weight: bold;
         }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .input {
+            width: 40px;
+            border: none;
+            border-bottom: 3px solid rgba(0, 0, 0, 0.5);
+            margin: 0 10px;
+            text-align: center;
+            font-size: 36px;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .input:focus {
+            border-bottom: 3px solid orange;
+            outline: none;
+        }
+
+        .input:nth-child(1) {
+            cursor: pointer;
+            pointer-events: all;
+        }
     </style>
 </head>
 
 <body>
+    <div class="container">
+        <div id="inputs" class="inputs">
+            <input class="input" type="text" inputmode="text" maxlength="1" />
+            <input class="input" type="text" inputmode="text" maxlength="1" />
+            <input class="input" type="text" inputmode="text" maxlength="1" />
+            <input class="input" type="text" inputmode="text" maxlength="1" />
+        </div>
+    </div>
+
     <div class="overlay">
         <p id="text">
-            Dans l'ombre des cieux olympiens, les assauts répétés des Titans laissèrent Zeus affaibli, ses cicatrices
-            témoignant de sa puissance passée. Voyant sa vulnérabilité, Héra pressentit une menace grandissante. Car
-            s'il venait à décliner, aucun ne saurait empêcher la chute du royaume des dieux.
+            Bonjour Célia, la guilde a retrouvé la trace d'une pierre et tu étais la plus proche, alors ils m'ont envoyé
+            te prévenir! De nombreuses aventures et enigmes nous attendent, mais je serai à tes côtés tout au long de
+            cette quête. Bien, voici ce que nous avons découvert...
         </p>
     </div>
-    <div> 
+    <div>
         <button class="previous-page-button" onclick="goToPreviousPage()">←</button>
         <button class="next-page-button" onclick="goToNextPage()">→</button>
 
-        <audio id="myaudio" src="music/avengers.mp3" autoplay>
+        <audio id="myaudio" src="music/q1.mp3" autoplay>
             Votre navigateur ne supporte pas l'élément <code>audio</code>.
         </audio>
     </div>
     <script>
+        const inputs = document.getElementById("inputs");
+        inputs.addEventListener("input", function (e) {
+            const target = e.target;
+            const val = target.value;
+
+            if (isNaN(val)) {
+                target.value = "";
+                return;
+            }
+
+            if (val != "") {
+                const next = target.nextElementSibling;
+                if (next) {
+                    next.focus();
+                }
+            }
+        });
+
+        inputs.addEventListener("keyup", function (e) {
+            const target = e.target;
+            const key = e.key.toLowerCase();
+
+            if (key == "backspace" || key == "delete") {
+                target.value = "";
+                const prev = target.previousElementSibling;
+                if (prev) {
+                    prev.focus();
+                }
+                return;
+            }
+        });
         var audio = document.getElementById("myaudio");
         audio.volume = 0.1;
 
+        document.getElementById('psw').hidden = false;
+
         const text_array = [
-            "Dans l'ombre des cieux olympiens, les assauts répétés des Titans laissèrent Zeus affaibli, ses cicatrices témoignant de sa puissance passée. Voyant sa vulnérabilité, Héra pressentit une menace grandissante. Car s'il venait à décliner, aucun ne saurait empêcher la chute du royaume des dieux.",
+            "Bonjour Célia, la guilde a retrouvé la trace d'une pierre et tu étais la plus proche, alors ils m'ont envoyé te prévenir! De nombreuses aventures et enigmes nous attendent, mais je serai à tes côtés tout au long de cette quête. Bien, voici ce que nous avons découvert...",
 
-            "Elle convainquit le roi des dieux de diviser ses forces en six pierres magiques, et les décerner aux autres dieux. Chacune d'elles octroierait un pouvoir spécifique à son porteur, leur permettant de lutter efficacement contre leurs ennemis. Ainsi, les gardiens furent désignés: Athéna et Arès gardèrent la Jaspe, associée à la force et à la protection.",
+            "Il y a très longtemps, les guildes avaient l'habitude de faire s'affronter leurs XV meilleurs membres dans des tournois où se déroulaient des épreuves de force et de vitesse. À cette époque, notre guilde était extrêmement puissante et nous étions souvent vainqueurs. Mais un jour, nous fûmes battus à plate couture par nos rivaux, une célèbre guilde de gladiateurs. Et cela se répéta chaque année par la suite. Ils étaient étrangement dotés d'une force extraordinaire lors des épreuves individuelles. Quelque chose clochait.",
 
-            "Poséidon et Héphaïstos reçurent le Lapis Lazuli, associé à la sagesse et à la raison.",
-
-            "Apollon et Artémis reçurent la Citrine, une pierre solaire associée à la chance et à la réussite.",
-
-            "Aphrodite et Hermès reçurent le quartz rose, pierre de l'amour et de la paix.",
-
-            "Déméter et Dionysos étaient les gardiens de la Cornaline, associée à l'énergie vitale et à la fertilité.",
-
-            "Hadès et Hestia gardaient l'Obsidienne, associée à la protection contre le mal.",
-
-            "Enfin, Héphaïstos fut chargé de forger un anneau catalyseur. En enchâssant une pierre sur l'artefact, son pouvoir en serait décuplé. Cela permettrait de se débarrasser des ennemis les plus puissants.",
-
-            "Des siècles durant, les Titans ne purent espérer vaincre les dieux. Leur puissance était beaucoup trop importante. Mais bientôt, une guerre éclata parmi eux. Ivres du pouvoir que leur conférait l'anneau, ils ne pouvaient se résoudre à le partager. Face à ce constat, Cronos attendait le moment opportun pour déclencher une attaque dévastatrice.",
-
-            "Au cours d'une violente querelle entre Hadès et Poséidon, l'anneau échappa à leur emprise et glissa hors de la demeure céleste des dieux, atterrissant dans le monde des humains. Au même instant, les Titans déchaînèrent leur attaque, profitant de la confusion et de la division parmi les dieux pour semer le chaos dans les cieux.",
-
-            "Conscient de leur défaite imminente, les dieux comprirent que les Titans s'empareraient des gemmes et que tout espoir serait perdu. Dans un geste de désespoir, ils les dissimulèrent en plusieurs endroits sur terre, confiant leur destinée en la force des hommes.",
-
-            "Pendant plus de mille ans, aucune pierre ni anneau ne furent retrouvés, si bien que l'existence même des dieux grecs, emprisonnés par les titans, fût oubliée de presque tous. Seule une certaine guilde de fées n'oublia pas cette quête, destinée à ses plus valeureux membres..."];
+            "Nous pensons qu'avant d'être capturés, Athéna et Arès leur auraient peut être confié la pierre de Jaspe, leur conférant cette force inouïe. Nous savons que cette guilde était autrefois basé dans la ville de Toulouse. Les combats de gladiateurs étant interdits de nos jours, nous pensons qu'il s'adonnent aujourd'hui à des démonstrations guerrière moins sanglantes. Si nous voulons en apprendre plus, il faudra nous rendre dans leur arène. As-tu une idée en tête ?"];
 
         var page_number = 0;
 
@@ -123,17 +175,17 @@
             }
 
             document.getElementById('text').innerText = text_array[page_number + 1];
-            document.body.style.backgroundImage = `url('images/intro${page_number + 2}.jpg')`;
+            document.body.style.backgroundImage = `url('images/q1-${page_number + 2}.jpg')`;
             page_number = page_number + 1;
         }
 
         function goToPreviousPage() {
             if (page_number == 0) {
-                window.location.href = 'index.html';
+                window.location.href = 'quetes.html';
             }
 
             document.getElementById('text').innerText = text_array[page_number - 1];
-            document.body.style.backgroundImage = `url('images/intro${page_number}.jpg')`;
+            document.body.style.backgroundImage = `url('images/q1-${page_number}.jpg')`;
             page_number = page_number - 1;
         }
     </script>

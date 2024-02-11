@@ -71,7 +71,7 @@
             s'il venait à décliner, aucun ne saurait empêcher la chute du royaume des dieux.
         </p>
     </div>
-    <div> 
+    <div>
         <button class="previous-page-button" onclick="goToPreviousPage()">←</button>
         <button class="next-page-button" onclick="goToNextPage()">→</button>
 
@@ -80,9 +80,6 @@
         </audio>
     </div>
     <script>
-        var audio = document.getElementById("myaudio");
-        audio.volume = 0.1;
-
         const text_array = [
             "Dans l'ombre des cieux olympiens, les assauts répétés des Titans laissèrent Zeus affaibli, ses cicatrices témoignant de sa puissance passée. Voyant sa vulnérabilité, Héra pressentit une menace grandissante. Car s'il venait à décliner, aucun ne saurait empêcher la chute du royaume des dieux.",
 
@@ -125,6 +122,13 @@
             document.getElementById('text').innerText = text_array[page_number + 1];
             document.body.style.backgroundImage = `url('images/intro${page_number + 2}.jpg')`;
             page_number = page_number + 1;
+
+            var audio = document.getElementById("myaudio");
+            audio.volume = 0.1;
+            if (page_number == 8) {
+                audio.src = "music/sinistre.mp3";
+                audio.play();
+            }
         }
 
         function goToPreviousPage() {
