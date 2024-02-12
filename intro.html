@@ -78,6 +78,10 @@
         <audio id="myaudio" src="music/avengers.mp3" autoplay>
             Votre navigateur ne supporte pas l'élément <code>audio</code>.
         </audio>
+
+        <audio id="myaudio2" src="music/sinistre.mp3">
+            Votre navigateur ne supporte pas l'élément <code>audio</code>.
+        </audio>
     </div>
     <script>
         const text_array = [
@@ -123,11 +127,12 @@
             document.body.style.backgroundImage = `url('images/intro${page_number + 2}.jpg')`;
             page_number = page_number + 1;
 
-            var audio = document.getElementById("myaudio");
-            audio.volume = 0.1;
             if (page_number == 8) {
-                audio.src = "music/sinistre.mp3";
-                audio.play();
+                var audio = document.getElementById("myaudio");
+                audio.pause();
+                var audio2 = document.getElementById("myaudio2");
+                audio2.src = "music/sinistre.mp3";
+                audio2.play();
             }
         }
 
