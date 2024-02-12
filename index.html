@@ -89,26 +89,30 @@
     <!-- Votre contenu va ici -->
 
     <script>
-        if (document.fullscreenEnabled) {
-            // Request full-screen mode for the document element
-            document.documentElement.requestFullscreen()
-                .then(() => {
-                    console.log('Entered fullscreen mode');
-                })
-                .catch((error) => {
-                    console.error('Error entering fullscreen mode:', error);
-                });
-        } else {
-            console.error('Fullscreen mode is not supported in this browser');
-        }
-        
         function showIntroduction() {
+            fullScreen();
             // Rediriger vers la page d'introduction
             window.location.href = 'intro.html';
         }
 
         function startJourney() {
+            fullScreen();
             window.location.href = 'quetes.html';
+        }
+
+        function fullScreen() {
+            if (document.fullscreenEnabled) {
+                // Request full-screen mode for the document element
+                document.documentElement.requestFullscreen()
+                    .then(() => {
+                        console.log('Entered fullscreen mode');
+                    })
+                    .catch((error) => {
+                        console.error('Error entering fullscreen mode:', error);
+                    });
+            } else {
+                console.error('Fullscreen mode is not supported in this browser');
+            }
         }
     </script>
 </body>

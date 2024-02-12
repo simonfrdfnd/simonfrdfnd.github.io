@@ -62,19 +62,32 @@
         }
 
         .container {
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 10px;
+        }
+
+        .ligne1 {
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            margin-bottom: 10px;
+        }
+
+        .ligne2 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .input {
-            width: 40px;
+            width: 10px;
             border: none;
             border-bottom: 3px solid rgba(0, 0, 0, 0.5);
             margin: 0 10px;
             text-align: center;
-            font-size: 36px;
+            font-size: 10px;
             cursor: not-allowed;
             pointer-events: none;
         }
@@ -92,12 +105,27 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container" id="inp">
         <div id="inputs" class="inputs">
-            <input class="input" type="text" inputmode="text" maxlength="1" />
-            <input class="input" type="text" inputmode="text" maxlength="1" />
-            <input class="input" type="text" inputmode="text" maxlength="1" />
-            <input class="input" type="text" inputmode="text" maxlength="1" />
+            <div class="ligne1">
+                <input class="input" type="text" inputmode="text" maxlength="1" />
+                <input class="input" type="text" inputmode="text" maxlength="1" />
+                <input class="input" type="text" inputmode="text" maxlength="1" />
+                <input class="input" type="text" inputmode="text" maxlength="1" />
+                <input class="input" type="text" inputmode="text" maxlength="1" />
+            </div>
+            <div class="ligne2">
+                <input class="input" type="text" inputmode="text" maxlength="1" />
+                <input class="input" type="text" inputmode="text" maxlength="1" />
+                <input class="input" type="text" inputmode="text" maxlength="1" />
+                <input class="input" type="text" inputmode="text" maxlength="1" />
+                <input class="input" type="text" inputmode="text" maxlength="1" />
+                <input class="input" type="text" inputmode="text" maxlength="1" />
+                <input class="input" type="text" inputmode="text" maxlength="1" />
+                <input class="input" type="text" inputmode="text" maxlength="1" />
+                <input class="input" type="text" inputmode="text" maxlength="1" />
+                <input class="input" type="text" inputmode="text" maxlength="1" />
+            </div>
         </div>
     </div>
 
@@ -110,22 +138,19 @@
     </div>
     <div>
         <button class="previous-page-button" onclick="goToPreviousPage()">←</button>
-        <button class="next-page-button" onclick="goToNextPage()">→</button>
+        <button id="next" class="next-page-button" onclick="goToNextPage()">→</button>
 
         <audio id="myaudio" src="music/q1.mp3" autoplay>
             Votre navigateur ne supporte pas l'élément <code>audio</code>.
         </audio>
     </div>
     <script>
+        document.getElementById("inp").hidden = true;
         const inputs = document.getElementById("inputs");
         inputs.addEventListener("input", function (e) {
             const target = e.target;
             const val = target.value;
-
-            if (isNaN(val)) {
-                target.value = "";
-                return;
-            }
+            target.value = val.toUpperCase();
 
             if (val != "") {
                 const next = target.nextElementSibling;
@@ -133,6 +158,7 @@
                     next.focus();
                 }
             }
+            checkAnswer();
         });
 
         inputs.addEventListener("keyup", function (e) {
@@ -148,17 +174,28 @@
                 return;
             }
         });
+
+        function checkAnswer() {
+            var inputs = document.querySelectorAll('.input');
+            var inputValues = [];
+            inputs.forEach(function (input) {
+                inputValues.push(input.value);
+            });
+            var combinedString = inputValues.join('');
+            if (combinedString == "STADETOULOUSAIN") {
+                document.getElementById("next").hidden = false;
+            }
+        }
+
         var audio = document.getElementById("myaudio");
         audio.volume = 0.1;
-
-        document.getElementById('psw').hidden = false;
 
         const text_array = [
             "Bonjour Célia, la guilde a retrouvé la trace d'une pierre et tu étais la plus proche, alors ils m'ont envoyé te prévenir! De nombreuses aventures et enigmes nous attendent, mais je serai à tes côtés tout au long de cette quête. Bien, voici ce que nous avons découvert...",
 
-            "Il y a très longtemps, les guildes avaient l'habitude de faire s'affronter leurs XV meilleurs membres dans des tournois où se déroulaient des épreuves de force et de vitesse. À cette époque, notre guilde était extrêmement puissante et nous étions souvent vainqueurs. Mais un jour, nous fûmes battus à plate couture par nos rivaux, une célèbre guilde de gladiateurs. Et cela se répéta chaque année par la suite. Ils étaient étrangement dotés d'une force extraordinaire lors des épreuves individuelles. Quelque chose clochait.",
+            "Il y a très longtemps, les guildes avaient l'habitude de s'affronter dans des tournois où se déroulaient des épreuves de force et de vitesse. À cette époque, notre guilde était extrêmement puissante et nous étions souvent vainqueurs. Mais un jour, nous fûmes battus à plate couture par nos rivaux, une célèbre guilde de gladiateurs. Et cela se répéta chaque année par la suite. Ils étaient étrangement dotés d'une force extraordinaire lors des épreuves individuelles. Quelque chose clochait.",
 
-            "Nous pensons qu'avant d'être capturés, Athéna et Arès leur auraient peut être confié la pierre de Jaspe, leur conférant cette force inouïe. Nous savons que cette guilde était autrefois basé dans la ville de Toulouse. Les combats de gladiateurs étant interdits de nos jours, nous pensons qu'il s'adonnent aujourd'hui à des démonstrations guerrière moins sanglantes. Si nous voulons en apprendre plus, il faudra nous rendre dans leur arène. As-tu une idée en tête ?"];
+            "Mais lorsque les soupçons de triche commencèrent à s'eveiller, tout revint à la normale. Nous pensons qu'à cette époque, ils avaient en leur possession la pierre de Jaspe, leur conférant cette force inouïe. Nous savons que cette guilde était autrefois basée dans la ville de Toulouse. Selon d'anciens écrits, leur emblème serait visible sur le sol de la chapelle Saint Esprit, dans la crypte de la basilique Saint-Sernin. Si nous voulons en apprendre plus, il faudra retrouver leur emblème puis nous rendre dans leur arène. Alors, quel est le nom de cette guilde?"];
 
         var page_number = 0;
 
@@ -177,6 +214,12 @@
             document.getElementById('text').innerText = text_array[page_number + 1];
             document.body.style.backgroundImage = `url('images/q1-${page_number + 2}.jpg')`;
             page_number = page_number + 1;
+
+            if (page_number == 2) {
+                document.getElementById("inp").hidden = false;
+                document.getElementById("next").hidden = true;
+            }
+            checkAnswer();
         }
 
         function goToPreviousPage() {
@@ -187,6 +230,11 @@
             document.getElementById('text').innerText = text_array[page_number - 1];
             document.body.style.backgroundImage = `url('images/q1-${page_number}.jpg')`;
             page_number = page_number - 1;
+
+            if (page_number != 2) {
+                document.getElementById("inp").hidden = true;
+                document.getElementById("next").hidden = false;
+            }
         }
     </script>
 </body>
