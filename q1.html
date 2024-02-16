@@ -101,27 +101,6 @@
             cursor: pointer;
             pointer-events: all;
         }
-
-        .input2 {
-            width: 10px;
-            border: none;
-            border-bottom: 3px solid rgba(0, 0, 0, 0.5);
-            margin: 0 10px;
-            text-align: center;
-            font-size: 10px;
-            cursor: not-allowed;
-            pointer-events: none;
-        }
-
-        .input2:focus {
-            border-bottom: 3px solid orange;
-            outline: none;
-        }
-
-        .input2:nth-child(1) {
-            cursor: pointer;
-            pointer-events: all;
-        }
     </style>
 </head>
 
@@ -136,6 +115,23 @@
                 <input class="input" type="text" inputmode="text" maxlength="1" />
             </div>
             <div class="ligne2">
+                <input class="input" type="text" inputmode="text" maxlength="1" />
+                <input class="input" type="text" inputmode="text" maxlength="1" />
+                <input class="input" type="text" inputmode="text" maxlength="1" />
+                <input class="input" type="text" inputmode="text" maxlength="1" />
+                <input class="input" type="text" inputmode="text" maxlength="1" />
+                <input class="input" type="text" inputmode="text" maxlength="1" />
+                <input class="input" type="text" inputmode="text" maxlength="1" />
+                <input class="input" type="text" inputmode="text" maxlength="1" />
+                <input class="input" type="text" inputmode="text" maxlength="1" />
+                <input class="input" type="text" inputmode="text" maxlength="1" />
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="inp2">
+        <div id="inputs2" class="inputs">
+            <div class="ligne1">
                 <input class="input" type="text" inputmode="text" maxlength="1" />
                 <input class="input" type="text" inputmode="text" maxlength="1" />
                 <input class="input" type="text" inputmode="text" maxlength="1" />
@@ -198,7 +194,7 @@
 
         document.getElementById("inp2").hidden = true;
         const inputs2 = document.getElementById("inputs2");
-        inputs2.addEventListener("input2", function (e) {
+        inputs2.addEventListener("input", function (e) {
             const target = e.target;
             const val = target.value;
             target.value = val.toUpperCase();
@@ -228,7 +224,7 @@
 
         function checkAnswer(page_number) {
             if (page_number == 2) {
-                var inputs = document.querySelectorAll('.input');
+                var inputs = document.querySelectorAll('#inp .input');
                 var inputValues = [];
                 inputs.forEach(function (input) {
                     inputValues.push(input.value);
@@ -239,13 +235,13 @@
                 }
             }
             else if (page_number == 3) {
-                var inputs = document.querySelectorAll('.input2');
+                var inputs = document.querySelectorAll('#inp2 .input');
                 var inputValues = [];
                 inputs.forEach(function (input) {
                     inputValues.push(input.value);
                 });
                 var combinedString = inputValues.join('');
-                if (combinedString == "MAYSSONIE") {
+                if (combinedString == "MAYSSONNIE") {
                     document.getElementById("next").hidden = false;
                 }
             }
@@ -305,10 +301,19 @@
             document.body.style.backgroundImage = `url('images/q1-${page_number}.jpg')`;
             page_number = page_number - 1;
 
-            if (page_number != 2) {
-                document.getElementById("inp").hidden = true;
-                document.getElementById("next").hidden = false;
+            if (page_number == 2) {
+                document.getElementById("inp").hidden = false;
+                document.getElementById("inp2").hidden = true;
+                document.getElementById("next").hidden = true;
             }
+
+            if (page_number == 3) {
+                document.getElementById("inp").hidden = true;
+                document.getElementById("inp2").hidden = false;
+                document.getElementById("next").hidden = true;
+            }
+
+            checkAnswer(page_number);
         }
     </script>
 </body>
