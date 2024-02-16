@@ -101,6 +101,27 @@
             cursor: pointer;
             pointer-events: all;
         }
+
+        .input2 {
+            width: 10px;
+            border: none;
+            border-bottom: 3px solid rgba(0, 0, 0, 0.5);
+            margin: 0 10px;
+            text-align: center;
+            font-size: 10px;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .input2:focus {
+            border-bottom: 3px solid orange;
+            outline: none;
+        }
+
+        .input2:nth-child(1) {
+            cursor: pointer;
+            pointer-events: all;
+        }
     </style>
 </head>
 
@@ -158,7 +179,7 @@
                     next.focus();
                 }
             }
-            checkAnswer();
+            checkAnswer(page_number);
         });
 
         inputs.addEventListener("keyup", function (e) {
@@ -175,15 +196,58 @@
             }
         });
 
-        function checkAnswer() {
-            var inputs = document.querySelectorAll('.input');
-            var inputValues = [];
-            inputs.forEach(function (input) {
-                inputValues.push(input.value);
-            });
-            var combinedString = inputValues.join('');
-            if (combinedString == "STADETOULOUSAIN") {
-                document.getElementById("next").hidden = false;
+        document.getElementById("inp2").hidden = true;
+        const inputs2 = document.getElementById("inputs2");
+        inputs2.addEventListener("input2", function (e) {
+            const target = e.target;
+            const val = target.value;
+            target.value = val.toUpperCase();
+
+            if (val != "") {
+                const next = target.nextElementSibling;
+                if (next) {
+                    next.focus();
+                }
+            }
+            checkAnswer(page_number);
+        });
+
+        inputs2.addEventListener("keyup", function (e) {
+            const target = e.target;
+            const key = e.key.toLowerCase();
+
+            if (key == "backspace" || key == "delete") {
+                target.value = "";
+                const prev = target.previousElementSibling;
+                if (prev) {
+                    prev.focus();
+                }
+                return;
+            }
+        });
+
+        function checkAnswer(page_number) {
+            if (page_number == 2) {
+                var inputs = document.querySelectorAll('.input');
+                var inputValues = [];
+                inputs.forEach(function (input) {
+                    inputValues.push(input.value);
+                });
+                var combinedString = inputValues.join('');
+                if (combinedString == "STADETOULOUSAIN") {
+                    document.getElementById("next").hidden = false;
+                }
+            }
+            else if (page_number == 3) {
+                var inputs = document.querySelectorAll('.input2');
+                var inputValues = [];
+                inputs.forEach(function (input) {
+                    inputValues.push(input.value);
+                });
+                var combinedString = inputValues.join('');
+                if (combinedString == "MAYSSONIE") {
+                    document.getElementById("next").hidden = false;
+                }
             }
         }
 
@@ -193,9 +257,11 @@
         const text_array = [
             "Bonjour Célia, la guilde a retrouvé la trace d'une pierre et tu étais la plus proche, alors ils m'ont envoyé te prévenir! De nombreuses aventures et enigmes nous attendent, mais je serai à tes côtés tout au long de cette quête. Bien, voici ce que nous avons découvert...",
 
-            "Il y a très longtemps, les guildes avaient l'habitude de s'affronter dans des tournois où se déroulaient des épreuves de force et de vitesse. À cette époque, notre guilde était extrêmement puissante et nous étions souvent vainqueurs. Mais un jour, nous fûmes battus à plate couture par nos rivaux, une célèbre guilde de gladiateurs. Et cela se répéta chaque année par la suite. Ils étaient étrangement dotés d'une force extraordinaire lors des épreuves individuelles. Quelque chose clochait.",
+            "Il y a très longtemps, les guildes avaient l'habitude de s'affronter dans des tournois où se déroulaient des épreuves de force et de vitesse. À cette époque, notre guilde était extrêmement puissante et nous étions souvent vainqueurs. Mais un jour, nous fûmes battus à plate couture par nos rivaux, une célèbre guilde de gladiateurs. Et cela se répéta quelques années par la suite, avant de cesser subitement. Ils étaient étrangement dotés d'une force extraordinaire lors des épreuves individuelles. Quelque chose clochait.",
 
-            "Mais lorsque les soupçons de triche commencèrent à s'eveiller, tout revint à la normale. Nous pensons qu'à cette époque, ils avaient en leur possession la pierre de Jaspe, leur conférant cette force inouïe. Nous savons que cette guilde était autrefois basée dans la ville de Toulouse. Selon d'anciens écrits, leur emblème serait visible sur le sol de la chapelle Saint Esprit, dans la crypte de la basilique Saint-Sernin. Si nous voulons en apprendre plus, il faudra retrouver leur emblème puis nous rendre dans leur arène. Alors, quel est le nom de cette guilde?"];
+            "Nous pensons qu'à cette époque, ils avaient en leur possession la pierre de Jaspe, leur conférant cette force inouïe. Nous savons que cette guilde était autrefois basée dans la ville de Toulouse. Selon d'anciens écrits, leur emblème serait visible sur le sol de la chapelle Saint Esprit, dans la crypte de la basilique Saint-Sernin. Si nous voulons en apprendre plus, il faudra retrouver leur emblème puis nous rendre dans leur arène. Alors, quel est le nom de cette guilde?",
+
+            "Bien joué! Allons voir un match, la guilde nous a envoyé nos billets. Avec les dernières informations que tu as découvert, ils ont également retrouvé la trace du dernier posseseur de la pierre! Il s'agirait d'un joueur du stade Toulousain, un certain Alfred, mort pour la france pendant la première guerre mondiale. Une fois sur place, il nous faudra trouver son nom."];
 
         var page_number = 0;
 
@@ -217,9 +283,17 @@
 
             if (page_number == 2) {
                 document.getElementById("inp").hidden = false;
+                document.getElementById("inp2").hidden = true;
                 document.getElementById("next").hidden = true;
             }
-            checkAnswer();
+
+            if (page_number == 3) {
+                document.getElementById("inp").hidden = true;
+                document.getElementById("inp2").hidden = false;
+                document.getElementById("next").hidden = true;
+            }
+
+            checkAnswer(page_number);
         }
 
         function goToPreviousPage() {
