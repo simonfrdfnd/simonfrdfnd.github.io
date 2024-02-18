@@ -253,11 +253,13 @@
         const text_array = [
             "Bonjour Célia, la guilde a retrouvé la trace d'une pierre et tu étais la plus proche, alors ils m'ont envoyé te prévenir! De nombreuses aventures et enigmes nous attendent, mais je serai à tes côtés tout au long de cette quête. Bien, voici ce que nous avons découvert...",
 
-            "Il y a très longtemps, les guildes avaient l'habitude de s'affronter dans des tournois où se déroulaient des épreuves de force et de vitesse. À cette époque, notre guilde était extrêmement puissante et nous étions souvent vainqueurs. Mais un jour, nous fûmes battus à plate couture par nos rivaux, une célèbre guilde de gladiateurs. Et cela se répéta quelques années par la suite, avant de cesser subitement. Ils étaient étrangement dotés d'une force extraordinaire lors des épreuves individuelles. Quelque chose clochait.",
+            "Il y a très longtemps, les guildes s'affrontaient dans des tournois sanglants. À cette époque, nous étions extrêmement puissants, mais nos rivaux l'était encore plus. Il s'agissait d'une guilde de gladiateurs, fondée au préalable par nul autre qu'Hercule! Nous pensons qu'Hercule alias Héraklès avait en sa possession la pierre de Jaspe, lui permettant de réaliser tant d'exploits. Elle se serait ensuite transmise de génération en génération au sein de cette guilde.",
 
-            "Nous pensons qu'à cette époque, ils avaient en leur possession la pierre de Jaspe, leur conférant cette force inouïe. Nous savons que cette guilde était autrefois basée dans la ville de Toulouse. Selon d'anciens écrits, leur emblème serait visible sur le sol de la chapelle Saint Esprit, dans la crypte de la basilique Saint-Sernin. Si nous voulons en apprendre plus, il faudra retrouver leur emblème puis nous rendre dans leur arène. Alors, quel est le nom de cette guilde?",
+            "Malheureusement nous avons perdu leur trace car ils sont désormais une société secrète, sous couverture d'un autre nom. Mais selon d'anciens écrits, on peut trouver leur emblème 'en se rendant au coeur de la ville, puis en empruntant la direction du taureau. Sur la place, il faut passer sous la porte du tympan et déambuler vers le Nord-Est jusqu'au Saint-Esprit'. Si nous voulons en apprendre plus, il faudra retrouver cet emblème qui nous mènera à leur arène. Alors, quel est le nom de cette guilde?",
 
-            "Bien joué! Allons voir un match, la guilde nous a envoyé nos billets. Avec les dernières informations que tu as découvert, ils ont également retrouvé la trace du dernier posseseur de la pierre! Il s'agirait d'un joueur du stade Toulousain, un certain Alfred, mort pour la france pendant la première guerre mondiale. Une fois sur place, il nous faudra trouver son nom."];
+            "Bien joué! Allons voir un match, la guilde nous a envoyé nos billets. Avec les dernières informations que tu as découvert, ils ont également retrouvé la trace du dernier posseseur de la pierre! Il s'agirait d'un joueur du stade Toulousain, un certain Alfred, mort pour la france pendant la première guerre mondiale. Une fois sur place, il nous faudra trouver son nom.",
+        
+            "Bravo, tu as trouvé le dernier détenteur connu de la pierre de Jaspe. Mort sur le champ de bataille, il griffona ses dernièrs mots pour ses camarades, qui ne saisirent jamais leur sens: 'Pour sentir la force dans sa main, il faut être à la Place d'Heraklès.'"];
 
         var page_number = 0;
 
@@ -289,6 +291,12 @@
                 document.getElementById("next").hidden = true;
             }
 
+            if (page_number == 4) {
+                document.getElementById("inp").hidden = true;
+                document.getElementById("inp2").hidden = true;
+                document.getElementById("next").hidden = false;
+            }
+
             checkAnswer(page_number);
         }
 
@@ -311,6 +319,7 @@
                 document.getElementById("inp").hidden = true;
                 document.getElementById("inp2").hidden = false;
                 document.getElementById("next").hidden = true;
+                localStorage.setItem("q1Finished", "True");
             }
 
             checkAnswer(page_number);
