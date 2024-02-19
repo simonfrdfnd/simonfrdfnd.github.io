@@ -113,6 +113,7 @@
         function goToNextPage() {
             if (page_number == text_array.length - 1) {
                 window.location.href = 'index.html';
+                return;
             }
 
             document.getElementById('text').innerText = text_array[page_number + 1];
