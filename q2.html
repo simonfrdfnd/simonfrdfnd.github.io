@@ -273,7 +273,7 @@
                 window.location.href = 'index.html';
             }
 
-            document.getElementById('text').innerText = text_array[page_number + 1];
+            document.getElementById('text').innerHTML = text_array[page_number + 1];
             document.body.style.backgroundImage = `url('images/q1-${page_number + 2}.jpg')`;
             page_number = page_number + 1;
 
@@ -303,7 +303,7 @@
                 window.location.href = 'quetes.html';
             }
 
-            document.getElementById('text').innerText = text_array[page_number - 1];
+            document.getElementById('text').innerHTML = text_array[page_number - 1];
             document.body.style.backgroundImage = `url('images/q1-${page_number}.jpg')`;
             page_number = page_number - 1;
 
