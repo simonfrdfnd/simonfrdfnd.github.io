@@ -119,6 +119,8 @@
             document.getElementById('text').innerHTML = text_array[page_number + 1];
             document.body.style.backgroundImage = `url('images/intro${page_number + 2}.jpg')`;
             page_number = page_number + 1;
+
+            fullScreen();
         }
 
         function goToPreviousPage() {
@@ -129,6 +131,21 @@
             document.getElementById('text').innerHTML = text_array[page_number - 1];
             document.body.style.backgroundImage = `url('images/intro${page_number}.jpg')`;
             page_number = page_number - 1;
+        }
+
+        function fullScreen() {
+            if (document.fullscreenEnabled) {
+                // Request full-screen mode for the document element
+                document.documentElement.requestFullscreen()
+                    .then(() => {
+                        console.log('Entered fullscreen mode');
+                    })
+                    .catch((error) => {
+                        console.error('Error entering fullscreen mode:', error);
+                    });
+            } else {
+                console.error('Fullscreen mode is not supported in this browser');
+            }
         }
     </script>
 </body>

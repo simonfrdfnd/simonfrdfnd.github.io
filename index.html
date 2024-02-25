@@ -85,7 +85,6 @@
     <div>
         <button id="btnIntroduction" onclick="showIntroduction()">Introduction</button>
         <button id="btnCommencer" onclick="startJourney()">Commencer</button>
-        <button id="btnFullScreen" onclick="fullScreen()">Plein écran</button>
     </div>
     <!-- Votre contenu va ici -->
 
@@ -97,21 +96,6 @@
 
         function startJourney() {
             window.location.href = 'quetes.html';
-        }
-
-        function fullScreen() {
-            if (document.fullscreenEnabled) {
-                // Request full-screen mode for the document element
-                document.documentElement.requestFullscreen()
-                    .then(() => {
-                        console.log('Entered fullscreen mode');
-                    })
-                    .catch((error) => {
-                        console.error('Error entering fullscreen mode:', error);
-                    });
-            } else {
-                console.error('Fullscreen mode is not supported in this browser');
-            }
         }
     </script>
 </body>
