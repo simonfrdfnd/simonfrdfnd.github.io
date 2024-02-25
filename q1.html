@@ -100,7 +100,7 @@
         inputs.addEventListener("keyup", function (e) {
             const target = e.target;
             const key = e.key.toLowerCase();
-
+            console.log(key);
             if (key == "backspace" || key == "delete") {
                 target.value = "";
                 const prev = target.previousElementSibling;
@@ -138,10 +138,18 @@
         inputs2.addEventListener("keyup", function (e) {
             const target = e.target;
             const key = e.key.toLowerCase();
-
+            console.log(key);
             if (key == "backspace" || key == "delete") {
                 target.value = "";
                 const prev = target.previousElementSibling;
+                if (prev) {
+                    prev.focus();
+                }
+                return;
+            }
+            else if (key == " ")
+            {
+                const prev = target.nextElementSibling;
                 if (prev) {
                     prev.focus();
                 }
