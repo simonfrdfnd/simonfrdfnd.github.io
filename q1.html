@@ -109,6 +109,13 @@
                 }
                 return;
             }
+            else if (key == "enter")
+            {
+                const next = target.nextElementSibling;
+                if (next) {
+                    next.focus();
+                }
+            }
         });
 
         document.getElementById("inp2").hidden = true;
@@ -138,6 +145,13 @@
                     prev.focus();
                 }
                 return;
+            }
+            else if (key == "enter")
+            {
+                const next = target.nextElementSibling;
+                if (next) {
+                    next.focus();
+                }
             }
         });
 
