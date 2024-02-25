@@ -190,6 +190,14 @@
                 }
                 return;
             }
+            else if (key == " ")
+            {
+                const prev = target.nextElementSibling;
+                if (prev) {
+                    prev.focus();
+                }
+                return;
+            }
         });
 
         document.getElementById("inp2").hidden = true;
@@ -296,6 +304,7 @@
                 document.getElementById("inp").hidden = true;
                 document.getElementById("inp2").hidden = true;
                 document.getElementById("next").hidden = false;
+                localStorage.setItem("q1Finished", "True");
             }
 
             checkAnswer(page_number);
@@ -319,7 +328,6 @@
                 document.getElementById("inp").hidden = true;
                 document.getElementById("inp2").hidden = false;
                 document.getElementById("next").hidden = true;
-                localStorage.setItem("q1Finished", "True");
             }
             else {
                 document.getElementById("inp").hidden = true;
