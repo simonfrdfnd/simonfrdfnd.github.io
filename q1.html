@@ -109,7 +109,7 @@
                 }
                 return;
             }
-            else
+            else if(key == " " || key == "undefined")
             {
                 const prev = target.nextElementSibling;
                 if (prev) {
@@ -147,7 +147,7 @@
                 }
                 return;
             }
-            else
+            else if(key == " " || key == "undefined")
             {
                 const prev = target.nextElementSibling;
                 if (prev) {
