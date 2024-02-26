@@ -24,50 +24,11 @@
 </head>
 
 <body>
-    <div class="container" id="inp">
-        <div id="inputs" class="inputs">
-            <div class="ligne1">
-                <input class="input" type="text" inputmode="text" maxlength="1" />
-                <input class="input" type="text" inputmode="text" maxlength="1" />
-                <input class="input" type="text" inputmode="text" maxlength="1" />
-                <input class="input" type="text" inputmode="text" maxlength="1" />
-                <input class="input" type="text" inputmode="text" maxlength="1" />
-            </div>
-            <div class="ligne2">
-                <input class="input" type="text" inputmode="text" maxlength="1" />
-                <input class="input" type="text" inputmode="text" maxlength="1" />
-                <input class="input" type="text" inputmode="text" maxlength="1" />
-                <input class="input" type="text" inputmode="text" maxlength="1" />
-                <input class="input" type="text" inputmode="text" maxlength="1" />
-                <input class="input" type="text" inputmode="text" maxlength="1" />
-                <input class="input" type="text" inputmode="text" maxlength="1" />
-                <input class="input" type="text" inputmode="text" maxlength="1" />
-                <input class="input" type="text" inputmode="text" maxlength="1" />
-                <input class="input" type="text" inputmode="text" maxlength="1" />
-            </div>
-        </div>
-    </div>
-
-    <div class="container" id="inp2">
-        <div id="inputs2" class="inputs">
-            <div class="ligne1">
-                <input class="input" type="text" inputmode="text" maxlength="1" />
-                <input class="input" type="text" inputmode="text" maxlength="1" />
-                <input class="input" type="text" inputmode="text" maxlength="1" />
-                <input class="input" type="text" inputmode="text" maxlength="1" />
-                <input class="input" type="text" inputmode="text" maxlength="1" />
-                <input class="input" type="text" inputmode="text" maxlength="1" />
-                <input class="input" type="text" inputmode="text" maxlength="1" />
-                <input class="input" type="text" inputmode="text" maxlength="1" />
-                <input class="input" type="text" inputmode="text" maxlength="1" />
-                <input class="input" type="text" inputmode="text" maxlength="1" />
-            </div>
-        </div>
-    </div>
-
     <div class="overlay">
         <p id="text">
-            Félicitations, tu as trouvé la pierre de Jaspe! N'étant pas une demi-déesse, la porter ne te confèrera pas la force d'Hercule, mais elle aura un effet bénéfique sur toi. Fais en bon usage.
+            Félicitations, tu as trouvé la pierre de Jaspe! N'étant pas une demi-déesse, la porter ne te confèrera pas
+            la force d'Hercule, mais elle aura un effet bénéfique sur toi. Fais en bon usage. Bien, la guilde nous a
+            envoyé notre prochaine mission.
         </p>
     </div>
     <div>
@@ -79,108 +40,15 @@
         </audio>
     </div>
     <script>
-        document.getElementById("inp").hidden = true;
-        const inputs = document.getElementById("inputs");
-        inputs.addEventListener("input", function (e) {
-            const target = e.target;
-            const val = target.value;
-            target.value = val.toUpperCase();
-
-            if (val != "") {
-                const next = target.nextElementSibling;
-                if (next) {
-                    next.focus();
-                }
-            }
-            checkAnswer(page_number);
-        });
-
-        inputs.addEventListener("keyup", function (e) {
-            const target = e.target;
-            const key = e.key.toLowerCase();
-
-            if (key == "backspace" || key == "delete") {
-                target.value = "";
-                const prev = target.previousElementSibling;
-                if (prev) {
-                    prev.focus();
-                }
-                return;
-            }
-            else if (key == " ")
-            {
-                const prev = target.nextElementSibling;
-                if (prev) {
-                    prev.focus();
-                }
-                return;
-            }
-        });
-
-        document.getElementById("inp2").hidden = true;
-        const inputs2 = document.getElementById("inputs2");
-        inputs2.addEventListener("input", function (e) {
-            const target = e.target;
-            const val = target.value;
-            target.value = val.toUpperCase();
-
-            if (val != "") {
-                const next = target.nextElementSibling;
-                if (next) {
-                    next.focus();
-                }
-            }
-            checkAnswer(page_number);
-        });
-
-        inputs2.addEventListener("keyup", function (e) {
-            const target = e.target;
-            const key = e.key.toLowerCase();
-
-            if (key == "backspace" || key == "delete") {
-                target.value = "";
-                const prev = target.previousElementSibling;
-                if (prev) {
-                    prev.focus();
-                }
-                return;
-            }
-        });
-
-        function checkAnswer(page_number) {
-            if (page_number == 2) {
-                var inputs = document.querySelectorAll('#inp .input');
-                var inputValues = [];
-                inputs.forEach(function (input) {
-                    inputValues.push(input.value);
-                });
-                var combinedString = inputValues.join('');
-                if (combinedString == "STADETOULOUSAIN") {
-                    document.getElementById("next").hidden = false;
-                }
-            }
-            else if (page_number == 3) {
-                var inputs = document.querySelectorAll('#inp2 .input');
-                var inputValues = [];
-                inputs.forEach(function (input) {
-                    inputValues.push(input.value);
-                });
-                var combinedString = inputValues.join('');
-                if (combinedString == "MAYSSONNIE") {
-                    document.getElementById("next").hidden = false;
-                }
-            }
-        }
-
         var audio = document.getElementById("myaudio");
         audio.volume = 0.1;
 
         const text_array = [
-            "Bonjour Célia, la guilde a retrouvé la trace d'une pierre et tu étais la plus proche, alors ils m'ont envoyé te prévenir! De nombreuses aventures et enigmes nous attendent, mais je serai à tes côtés tout au long de cette quête. Bien, voici ce que nous avons découvert...",
+            "Félicitations, tu as trouvé la pierre de Jaspe! N'étant pas une demi-déesse, la porter ne te confèrera pas la force d'Hercule, mais elle aura un effet bénéfique sur toi. Fais en bon usage. Bien, la guilde à une autre piste que nous devons explorer.",
 
-            "Il y a très longtemps, les guildes s'affrontaient dans des tournois sanglants. À cette époque, nous étions extrêmement puissants, mais nos rivaux l'était encore plus. Il s'agissait d'une guilde de gladiateurs, fondée au préalable par nul autre qu'Héraklès alias Hercule! Nous pensons qu'il avait en sa possession la pierre de Jaspe, lui permettant de réaliser tant d'exploits. Elle se serait ensuite transmise de génération en génération au sein de cette guilde.",
+            "En des temps immémoriaux, il était un roi d'Athènes connut pour sa grande sagesse et raison. Il s'agissait du célèbre Thésée, fils de Poséidon. Selon la légende, Thésée se rendit dans le labyrinthe, un dédale inextricable de passages tortueux, pour exterminer une créature mi-homme, mi-bête qui y était enfermée. Mais pour Thésée, ce n'était pas seulement un défi physique. Entrer dans ce labyrinthe, c'était aussi plonger dans les méandres de son propre être, affronter ses propres peurs et désirs les plus sombres. Il n'aurait pu en réchapper qu'en s'accrochant au fil de la raison.",
 
-            "Malheureusement nous avons perdu leur trace car ils sont désormais une société secrète, sous couverture d'un autre nom. Mais selon d'anciens écrits, on peut trouver leur emblème à Toulouse <em>en se rendant au coeur de la ville, puis en empruntant le passage du taureau. Sur la place, il faut passer sous la porte du tympan et déambuler vers le Nord-Est jusqu'au Saint-Esprit</em>. Si nous voulons en apprendre plus, il faudra retrouver cet emblème qui nous mènera à leur arène. Alors, quel est le nom de cette guilde?",
+            "Nous pensons que Poséidon et Héphaïstos aurait pu confier la pierre de Lapis-Lazuli au gardien du labyrinthe, dans l'espoir que seul un valeureux héros puisse s'en emparer. Après avoir été vaincu par Thésée, le gardien lui aurait cédé la pierre et quitté son antre pour prendre sa retraite à Toulouse. Rendons-lui une petite visite, il pourra peut-être nous en apprendre plus.",
 
             "Bien joué! Allons voir un match, la guilde nous a envoyé nos billets. Avec les dernières informations que tu as découvert, ils ont également retrouvé la trace du dernier posseseur de la pierre! Il s'agirait d'un joueur du stade Toulousain, un certain Alfred, mort pour la france pendant la première guerre mondiale. Une fois sur place, il nous faudra trouver son nom.",
 
@@ -202,30 +70,49 @@
             }
 
             document.getElementById('text').innerHTML = text_array[page_number + 1];
-            document.body.style.backgroundImage = `url('images/q1-${page_number + 2}.jpg')`;
+            document.body.style.backgroundImage = `url('images/q2-${page_number + 2}.jpg')`;
             page_number = page_number + 1;
 
+            function callBack(position) {
+                // Coordonnées de l'autre position
+                const otherLatitude = 43.572903; // Remplacez par la latitude de l'autre position
+                const otherLongitude = 1.478029; // Remplacez par la longitude de l'autre position
+
+                // Fonction pour calculer la distance entre deux points en utilisant la formule de Haversine
+                function haversine(lat1, lon1, lat2, lon2) {
+                    const R = 6371; // Rayon de la Terre en kilomètres
+                    const dLat = (lat2 - lat1) * Math.PI / 180;
+                    const dLon = (lon2 - lon1) * Math.PI / 180;
+                    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                        Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                        Math.sin(dLon / 2) * Math.sin(dLon / 2);
+                    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+                    const d = R * c;
+                    return d;
+                }
+
+                // Position actuelle de l'utilisateur
+                const userLatitude = position.coords.latitude;
+                const userLongitude = position.coords.longitude;
+
+                // Calcul de la distance entre les deux positions
+                const distance = haversine(userLatitude, userLongitude, otherLatitude, otherLongitude);
+
+                console.log("Distance: " + distance.toFixed(2) + " km");
+
+                if (distance.toFixed(2) < 4) {
+                    document.getElementById("next").hidden = false;
+                }
+            }
+
             if (page_number == 2) {
-                document.getElementById("inp").hidden = false;
-                document.getElementById("inp2").hidden = true;
                 document.getElementById("next").hidden = true;
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(callBack);
+                } else {
+                    console.log("Geolocation is not supported by this browser.");
+                }
             }
-
-            if (page_number == 3) {
-                document.getElementById("inp").hidden = true;
-                document.getElementById("inp2").hidden = false;
-                document.getElementById("next").hidden = true;
-            }
-
-            if (page_number == 4) {
-                document.getElementById("inp").hidden = true;
-                document.getElementById("inp2").hidden = true;
-                document.getElementById("next").hidden = false;
-                localStorage.setItem("q1Finished", "True");
-            }
-
-            checkAnswer(page_number);
-            fullScreen();
         }
 
         function goToPreviousPage() {
@@ -234,26 +121,8 @@
             }
 
             document.getElementById('text').innerHTML = text_array[page_number - 1];
-            document.body.style.backgroundImage = `url('images/q1-${page_number}.jpg')`;
+            document.body.style.backgroundImage = `url('images/q2-${page_number}.jpg')`;
             page_number = page_number - 1;
-
-            if (page_number == 2) {
-                document.getElementById("inp").hidden = false;
-                document.getElementById("inp2").hidden = true;
-                document.getElementById("next").hidden = true;
-            }
-            else if (page_number == 3) {
-                document.getElementById("inp").hidden = true;
-                document.getElementById("inp2").hidden = false;
-                document.getElementById("next").hidden = true;
-            }
-            else {
-                document.getElementById("inp").hidden = true;
-                document.getElementById("inp2").hidden = true;
-                document.getElementById("next").hidden = false;
-            }
-
-            checkAnswer(page_number);
         }
 
         function fullScreen() {
