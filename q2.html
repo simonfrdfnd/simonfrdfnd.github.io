@@ -113,6 +113,8 @@
                     console.log("Geolocation is not supported by this browser.");
                 }
             }
+
+            fullScreen();
         }
 
         function goToPreviousPage() {
@@ -123,6 +125,8 @@
             document.getElementById('text').innerHTML = text_array[page_number - 1];
             document.body.style.backgroundImage = `url('images/q2-${page_number}.jpg')`;
             page_number = page_number - 1;
+
+            fullScreen();
         }
 
         function fullScreen() {
