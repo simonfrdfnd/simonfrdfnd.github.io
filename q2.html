@@ -24,6 +24,19 @@
 </head>
 
 <body>
+    <div class="container" id="inp">
+        <div id="inputs" class="inputs">
+            <div class="ligne1">
+                <input class="input" type="text" inputmode="text" maxlength="1" />
+                <input class="input" type="text" inputmode="text" maxlength="1" />
+                <input class="input" type="text" inputmode="text" maxlength="1" />
+                <input class="input" type="text" inputmode="text" maxlength="1" />
+                <input class="input" type="text" inputmode="text" maxlength="1" />
+                <input class="input" type="text" inputmode="text" maxlength="1" />
+            </div>
+        </div>
+    </div>
+
     <div class="overlay">
         <p id="text">
             Félicitations, tu as trouvé la pierre de Jaspe! N'étant pas une demi-déesse, la porter ne te confèrera pas
@@ -40,19 +53,71 @@
         </audio>
     </div>
     <script>
+        function checkAnswer(page_number) {
+            if (page_number == 4) {
+                var inputs = document.querySelectorAll('#inp .input');
+                var inputValues = [];
+                inputs.forEach(function (input) {
+                    inputValues.push(input.value);
+                });
+                var combinedString = inputValues.join('');
+                if (combinedString == "ARIANE") {
+                    document.getElementById("next").hidden = false;
+                }
+            }
+        }
+
+        document.getElementById("inp").hidden = true;
+        const inputs = document.getElementById("inputs");
+        inputs.addEventListener("input", function (e) {
+            const target = e.target;
+            const val = target.value;
+            target.value = val.toUpperCase();
+            console.log(target.value);
+            if (val != "") {
+                const next = target.nextElementSibling;
+                if (next) {
+                    next.focus();
+                }
+            }
+            checkAnswer(page_number);
+        });
+
+        inputs.addEventListener("keyup", function (e) {
+            const target = e.target;
+            const key = e.key.toLowerCase();
+            console.log(key);
+            if (key == "backspace" || key == "delete") {
+                target.value = "";
+                const prev = target.previousElementSibling;
+                if (prev) {
+                    prev.focus();
+                }
+                return;
+            }
+            else if (key == "enter") {
+                const next = target.nextElementSibling;
+                if (next) {
+                    next.focus();
+                }
+            }
+        });
+
         var audio = document.getElementById("myaudio");
         audio.volume = 0.1;
 
         const text_array = [
             "Félicitations, tu as trouvé la pierre de Jaspe! N'étant pas une demi-déesse, la porter ne te confèrera pas la force d'Hercule, mais elle aura un effet bénéfique sur toi. Fais en bon usage. Bien, la guilde à une autre piste que nous devons explorer.",
 
-            "En des temps immémoriaux, il était un roi d'Athènes connut pour sa grande sagesse et raison. Il s'agissait du célèbre Thésée, fils de Poséidon. Selon la légende, Thésée se rendit dans le labyrinthe, un dédale inextricable de passages tortueux, pour exterminer une créature mi-homme, mi-bête qui y était enfermée. Mais pour Thésée, ce n'était pas seulement un défi physique. Entrer dans ce labyrinthe, c'était aussi plonger dans les méandres de son propre être, affronter ses propres peurs et désirs les plus sombres. Il n'aurait pu en réchapper qu'en s'accrochant au fil de la raison.",
+            "En des temps immémoriaux, Thésée se rendit dans le labyrinthe, un dédale inextricable de passages tortueux, pour exterminer une créature mi-homme, mi-bête qui y était enfermée. Mais pour Thésée, ce n'était pas seulement un défi physique. Entrer dans ce labyrinthe, c'était aussi plonger dans les méandres de son propre être, affronter ses propres peurs et désirs les plus sombres. Il n'aurait pu en réchapper qu'en s'accrochant au fil de la raison, l'empechant de sombrer dans la folie.",
 
-            "Nous pensons que Poséidon et Héphaïstos aurait pu confier la pierre de Lapis-Lazuli au gardien du labyrinthe, dans l'espoir que seul un valeureux héros puisse s'en emparer. Après avoir été vaincu par Thésée, le gardien lui aurait cédé la pierre et quitté son antre pour prendre sa retraite à Toulouse. Rendons-lui une petite visite, il pourra peut-être nous en apprendre plus.",
+            "Nous pensons que Poséidon et Héphaïstos aurait pu confier la pierre de Lapis-Lazuli au gardien du labyrinthe, dans l'espoir que seul un valeureux héros puisse s'en emparer. Rendons-nous dans son antre, nous en apprendrons sûrement plus. D'après la guilde, il nous faudra <em>suivre la direction du lion depuis la roue des 12 pendant 16.2 Dolikos attique.</em>",
 
-            "Bien joué! Allons voir un match, la guilde nous a envoyé nos billets. Avec les dernières informations que tu as découvert, ils ont également retrouvé la trace du dernier posseseur de la pierre! Il s'agirait d'un joueur du stade Toulousain, un certain Alfred, mort pour la france pendant la première guerre mondiale. Une fois sur place, il nous faudra trouver son nom.",
+            "Au centre du labyrinthe, une image est placardée sur une pancarte, avec la mention: <em>Merci de faire suivre le courrier à ma nouvelle adresse, le Minotaure.</em>",
 
-            "Bravo, tu as trouvé le dernier détenteur connu de la pierre de Jaspe. Mort sur le champ de bataille, il griffona ses dernièrs mots pour ses camarades, qui ne saisirent jamais leur sens: <em>'Pour trouver la force dans sa main, il faut être à la Place d'Heraklès.'</em>"];
+            "Étrangère, tu as vu juste, Thésée à bien utilisé la pierre de raison pour s'échapper de mon labyrinthe. Mais tu as tort de penser que j'en étais le gardien. Répond à mes énigmes, et tu trouveras la vérité. Mais si ton esprit vacille et que tu ne parviens pas à percer leur voile, alors le tribut à payer sera la pierre que tu portes avec toi. <em>'Dans les cieux, je m'élève majestueuse, telle une flèche vers l'infini, ambitieuse. À Toulouse, mon nom résonne en puissance, symbole de science, d'audace et d'excellence. Dans les dédales d'un labyrinthe antique, mon fil guide, éclairant la voie magique. Tissant un chemin à travers les énigmes, je suis propriétaire d'une pierre rarissime.'</em>",
+
+            "Bravo, tu as trouvé la dernière détentrice connue de la pierre de Lapis-Lazuli, Ariane. Selon le minotaure, sa pierre serait cachée au pied de la fusée portant le même nom."];
 
         var page_number = 0;
 
@@ -62,22 +127,7 @@
             overlay.style.opacity = 1;
         }, 100); // 100 millisecondes de délai
 
-        // Fonction pour aller à la page suivante (à personnaliser)
-        function goToNextPage() {
-            if (page_number == text_array.length - 1) {
-                window.location.href = 'index.html';
-                return;
-            }
-
-            document.getElementById('text').innerHTML = text_array[page_number + 1];
-            document.body.style.backgroundImage = `url('images/q2-${page_number + 2}.jpg')`;
-            page_number = page_number + 1;
-
-            function callBack(position) {
-                // Coordonnées de l'autre position
-                const otherLatitude = 43.572903; // Remplacez par la latitude de l'autre position
-                const otherLongitude = 1.478029; // Remplacez par la longitude de l'autre position
-
+        function getDistance(position, otherLatitude, otherLongitude) {
                 // Fonction pour calculer la distance entre deux points en utilisant la formule de Haversine
                 function haversine(lat1, lon1, lat2, lon2) {
                     const R = 6371; // Rayon de la Terre en kilomètres
@@ -99,21 +149,81 @@
                 const distance = haversine(userLatitude, userLongitude, otherLatitude, otherLongitude);
 
                 console.log("Distance: " + distance.toFixed(2) + " km");
+                return distance;
+            }
 
-                if (distance.toFixed(2) < 4) {
+            function callBack1(position) {
+                // Coordonnées de l'autre position
+                const otherLatitude = 43.72003; // Remplacez par la latitude de l'autre position
+                const otherLongitude = 1.30036; // Remplacez par la longitude de l'autre position
+
+                distance = getDistance(position, otherLatitude, otherLongitude);
+                if (distance.toFixed(2) < 50) {
                     document.getElementById("next").hidden = false;
                 }
             }
 
+            function callBack2(position) {
+                // Coordonnées de l'autre position
+                const otherLatitude = 43.572903; // Remplacez par la latitude de l'autre position
+                const otherLongitude = 1.478029; // Remplacez par la longitude de l'autre position
+                distance = getDistance(position, otherLatitude, otherLongitude);
+                if (distance.toFixed(2) < 50) {
+                    document.getElementById("next").hidden = false;
+                }
+            }
+
+        // Fonction pour aller à la page suivante (à personnaliser)
+        function goToNextPage() {
+            if (page_number == text_array.length - 1) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            document.getElementById('text').innerHTML = text_array[page_number + 1];
+            document.body.style.backgroundImage = `url('images/q2-${page_number + 2}.jpg')`;
+            page_number = page_number + 1;
+
+            
             if (page_number == 2) {
-                document.getElementById("next").hidden = true;
+                document.getElementById("inp").hidden = true;
+                var q22Finished = localStorage.getItem('q2-2Finished');
+                if (!q22Finished) {
+                    document.getElementById("next").hidden = true;
+                }
                 if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(callBack);
+                    navigator.geolocation.getCurrentPosition(callBack1);
                 } else {
                     console.log("Geolocation is not supported by this browser.");
                 }
             }
 
+            if (page_number == 3) {
+                localStorage.setItem("q2-2Finished", "True");
+                document.getElementById("inp").hidden = true;
+                var q23Finished = localStorage.getItem('q2-3Finished');
+                if (!q23Finished) {
+                    document.getElementById("next").hidden = true; 
+                }
+
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(callBack2);
+                } else {
+                    console.log("Geolocation is not supported by this browser.");
+                }
+            }
+
+            if (page_number == 4) {
+                localStorage.setItem("q2-3Finished", "True");
+                document.getElementById("inp").hidden = false;
+                document.getElementById("next").hidden = true;
+            }
+
+            if (page_number == 5) {
+                document.getElementById("inp").hidden = true;
+                localStorage.setItem("q2Finished", "True");
+            }
+            
             fullScreen();
         }
 
@@ -126,6 +236,43 @@
             document.body.style.backgroundImage = `url('images/q2-${page_number}.jpg')`;
             page_number = page_number - 1;
 
+            if (page_number == 2) {
+                document.getElementById("inp").hidden = true;
+                var q22Finished = localStorage.getItem('q2-2Finished');
+                if (!q22Finished) {
+                    document.getElementById("next").hidden = true;
+                }
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(callBack1);
+                } else {
+                    console.log("Geolocation is not supported by this browser.");
+                }
+            }
+
+            if (page_number == 3) {
+                localStorage.setItem("q2-2Finished", "True");
+                document.getElementById("inp").hidden = true;
+                var q23Finished = localStorage.getItem('q2-3Finished');
+                if (!q23Finished) {
+                    document.getElementById("next").hidden = true; 
+                }
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(callBack2);
+                } else {
+                    console.log("Geolocation is not supported by this browser.");
+                }
+            }
+
+            if (page_number == 4) {
+                localStorage.setItem("q2-3Finished", "True");
+                document.getElementById("inp").hidden = false;
+                document.getElementById("next").hidden = true;
+            }
+
+            if (page_number == 5) {
+                document.getElementById("inp").hidden = true;
+            }
+            
             fullScreen();
         }
 
